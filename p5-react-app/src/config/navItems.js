@@ -21,7 +21,7 @@ export const navItems = [
   },
   {
     name: "Book Services",
-    path: "/book-services",
+    path: "/booking",
     icon: Calendar,
   },
   {
