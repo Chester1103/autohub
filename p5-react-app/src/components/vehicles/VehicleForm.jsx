@@ -1,4 +1,8 @@
 import { useState } from "react";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import Card from "../ui/Card";
+import Section from "../ui/Section";
 
 export const VehicleForm = ({ onAdd }) => {
   const [form, setForm] = useState({
@@ -7,6 +11,13 @@ export const VehicleForm = ({ onAdd }) => {
     year: "",
     plate: "",
   });
+
+  const handleChange = (field, value) => {
+    setForm((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   const handleSubmit = () => {
     if (!form.make || !form.model) return;
@@ -22,45 +33,35 @@ export const VehicleForm = ({ onAdd }) => {
   };
 
   return (
-    <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl mb-6">
-      <h2 className="text-lg font-semibold mb-4">Add Vehicle</h2>
+    <Section title="Add Vehicle" align="center">
+      <Card className="mb-6">
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            placeholder="Make"
+            value={form.make}
+            onChange={(e) => handleChange("make", e.target.value)}
+          />
+          <Input
+            placeholder="Model"
+            value={form.model}
+            onChange={(e) => handleChange("model", e.target.value)}
+          />
+          <Input
+            placeholder="Year"
+            value={form.year}
+            onChange={(e) => handleChange("year", e.target.value)}
+          />
+          <Input
+            placeholder="Plate"
+            value={form.plate}
+            onChange={(e) => handleChange("plate", e.target.value)}
+          />
+        </div>
 
-      <div className="grid grid-cols-2 gap-3">
-        <input
-          placeholder="Make"
-          value={form.make}
-          onChange={(e) => setForm({ ...form, make: e.target.value })}
-          className="p-2 bg-neutral-800 rounded"
-        />
-
-        <input
-          placeholder="Model"
-          value={form.model}
-          onChange={(e) => setForm({ ...form, model: e.target.value })}
-          className="p-2 bg-neutral-800 rounded"
-        />
-
-        <input
-          placeholder="Year"
-          value={form.year}
-          onChange={(e) => setForm({ ...form, year: e.target.value })}
-          className="p-2 bg-neutral-800 rounded"
-        />
-
-        <input
-          placeholder="Plate"
-          value={form.plate}
-          onChange={(e) => setForm({ ...form, plate: e.target.value })}
-          className="p-2 bg-neutral-800 rounded"
-        />
-      </div>
-
-      <button
-        onClick={handleSubmit}
-        className="mt-4 bg-white text-black px-4 py-2 rounded"
-      >
-        Add Vehicle
-      </button>
-    </div>
+        <Button onClick={handleSubmit} className="mt-6 w-full">
+          Add Vehicle
+        </Button>
+      </Card>
+    </Section>
   );
 };

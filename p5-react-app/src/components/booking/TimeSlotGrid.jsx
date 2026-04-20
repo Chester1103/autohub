@@ -1,3 +1,5 @@
+import Button from "../ui/Button";
+
 const timeSlots = [
   "9:00 AM",
   "10:00 AM",
@@ -13,22 +15,20 @@ export const TimeSlotGrid = ({ selected, onSelect, bookings }) => {
     <div className="grid grid-cols-3 gap-3">
       {timeSlots.map((slot) => {
         const isBooked = bookings.some((b) => b.time === slot);
+        let variant = "slot";
+        if (isBooked) variant = "disabled";
+        else if (selected === slot) variant = "selected";
 
         return (
-          <button
+          <Button
             key={slot}
+            variant={variant}
             disabled={isBooked}
             onClick={() => onSelect(slot)}
-            className={`p-2 rounded border text-sm transition ${
-              isBooked
-                ? "bg-red-500 text-white cursor-not-allowed"
-                : selected === slot
-                  ? "bg-white text-black"
-                  : "bg-neutral-800 hover:bg-neutral-700"
-            }`}
+            className="w-full"
           >
             {slot}
-          </button>
+          </Button>
         );
       })}
     </div>

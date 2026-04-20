@@ -25,15 +25,15 @@ export const Vehicles = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Vehicles</h1>
+    <div className="min-h-screen bg-background text-foreground px-6 py-12">
+      <h1 className="text-3xl font-display font-bold mb-8">Vehicles</h1>
 
       <VehicleForm onAdd={handleAdd} />
 
       {vehicles.length === 0 ? (
-        <p className="text-neutral-400">No vehicles yet.</p>
+        <p className="text-muted mt-6">No vehicles yet.</p>
       ) : (
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 gap-6 mt-6">
           {vehicles.map((vehicle) => (
             <VehicleCard
               key={vehicle.id}

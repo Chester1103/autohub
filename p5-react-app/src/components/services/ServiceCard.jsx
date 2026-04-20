@@ -1,14 +1,36 @@
+import Card from "../ui/Card";
+import Button from "../ui/Button";
+import { Clock, DollarSign } from "lucide-react";
+import { Link } from "react-router-dom";
+
 export const ServiceCard = ({ service }) => {
   return (
-    <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl hover:bg-neutral-800 transition">
-      <h3 className="text-lg font-semibold">{service.name}</h3>
+    <Card className="hover:shadow-md transition flex flex-col">
+      <div>
+        <h3 className="text-lg font-display font-semibold">{service.name}</h3>
+        <p className="text-sm text-muted mt-2 font-body">
+          {service.description}
+        </p>
 
-      <p className="text-sm text-neutral-400 mt-1">{service.description}</p>
-
-      <div className="mt-3 text-sm text-neutral-300 space-y-1">
-        <p>Duration: {service.duration}</p>
-        <p>Price: {service.price}</p>
+        <div className="mt-4 text-sm font-body space-y-2">
+          <p className="flex items-center gap-2 text-foreground">
+            <Clock className="w-4 h-4 text-accent" /> Duration:{" "}
+            {service.duration}
+          </p>
+          <p className="flex items-center gap-2 text-foreground">
+            <DollarSign className="w-4 h-4 text-accent" /> Price:{" "}
+            {service.price}
+          </p>
+        </div>
       </div>
-    </div>
+
+      {/* Book Now CTA pinned at bottom */}
+      <Link
+        to={`/booking?service=${encodeURIComponent(service.name)}`}
+        className="mt-auto"
+      >
+        <Button className="w-full mt-6">Book Now</Button>
+      </Link>
+    </Card>
   );
 };

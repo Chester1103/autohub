@@ -41,3 +41,24 @@ export const logoutUser = () => {
 export const getCurrentUser = () => {
   return getItem(STORAGE_KEYS.CURRENT_USER);
 };
+
+export const updatePassword = (newPassword) => {
+  const currentUser = getItem(STORAGE_KEYS.CURRENT_USER);
+  const users = getItem(STORAGE_KEYS.USERS) || [];
+
+  if (!currentUser) return { error: "No user logged in" };
+
+  const updatedUsers = users.map((u) =>
+    u.id === currentUser.id ? { ...u, password: newPassword } : u,
+  );
+
+  const updatedUser = {
+    ...currentUser,
+    password: newPassword,
+  };
+
+  setItem(STORAGE_KEYS.USERS, updatedUsers);
+  setItem(STORAGE_KEYS.CURRENT_USER, updatedUser);
+
+  return updatedUser;
+};

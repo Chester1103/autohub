@@ -1,42 +1,77 @@
 import { Link } from "react-router-dom";
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import Section from "../components/ui/Section";
 
 export const Discovery = () => {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white flex flex-col">
-      {/* Navbar */}
-      <header className="flex justify-between items-center px-6 py-4 border-b border-neutral-800">
-        <h1 className="text-xl font-bold">🚗 Auto Hub</h1>
+    <div className="min-h-screen bg-background text-foreground px-6 py-12">
+      {/* HERO */}
+      <div className="max-w-5xl mx-auto text-center mb-24">
+        <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
+          Welcome to <span className="text-accent">Auto Hub</span>
+        </h1>
 
-        <div className="flex gap-3">
-          <Link to="/login" className="px-4 py-2 border rounded-lg">
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className="px-4 py-2 bg-white text-black rounded-lg"
-          >
-            Register
-          </Link>
-        </div>
-      </header>
-
-      {/* Hero */}
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-6">
-        <h2 className="text-4xl font-bold mb-4">
-          Manage Your Vehicle Services Easily
-        </h2>
-
-        <p className="text-neutral-400 mb-6 max-w-xl">
-          Book services, track history, and manage your vehicles in one place.
+        <p className="text-muted text-lg mb-10 max-w-2xl mx-auto font-body">
+          Your one-stop platform to manage vehicles, schedule services, and keep
+          track of maintenance history.
         </p>
 
-        <Link
-          to="/register"
-          className="bg-white text-black px-6 py-3 rounded-xl"
-        >
-          Get Started
+        <div className="flex justify-center gap-6">
+          <Link to="/login">
+            <Button className="px-6 py-3">Login</Button>
+          </Link>
+
+          <Link to="/register">
+            <Button variant="ghost" className="px-6 py-3">
+              Register
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* FEATURES */}
+      <Section title="Explore Auto Hub Features">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <Card className="hover:shadow-xl transition border border-border p-6 rounded-xl">
+            <h3 className="font-semibold mb-3 font-display text-lg">
+              Vehicle Management
+            </h3>
+            <p className="text-muted text-sm font-body">
+              Register and track all your vehicles in one place.
+            </p>
+          </Card>
+
+          <Card className="hover:shadow-xl transition border border-border p-6 rounded-xl">
+            <h3 className="font-semibold mb-3 font-display text-lg">
+              Service Booking
+            </h3>
+            <p className="text-muted text-sm font-body">
+              Schedule maintenance with available time slots.
+            </p>
+          </Card>
+
+          <Card className="hover:shadow-xl transition border border-border p-6 rounded-xl">
+            <h3 className="font-semibold mb-3 font-display text-lg">
+              Maintenance History
+            </h3>
+            <p className="text-muted text-sm font-body">
+              View your service history and completed work.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      {/* CTA */}
+      <div className="mt-24 text-center">
+        <h2 className="text-2xl md:text-3xl font-display font-semibold mb-6">
+          Ready to get started?
+        </h2>
+
+        <Link to="/register">
+          <Button className="px-8 py-3 text-lg">Create Account</Button>
         </Link>
-      </main>
+      </div>
     </div>
   );
 };

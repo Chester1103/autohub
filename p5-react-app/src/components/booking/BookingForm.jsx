@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { TimeSlotGrid } from "./TimeSlotGrid";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import Card from "../ui/Card";
+import Section from "../ui/Section";
+import { Car, Wrench } from "lucide-react";
 
 export const BookingForm = ({ vehicles, bookings, onBook }) => {
   const [vehicleId, setVehicleId] = useState("");
@@ -8,55 +13,52 @@ export const BookingForm = ({ vehicles, bookings, onBook }) => {
 
   const handleSubmit = () => {
     if (!vehicleId || !service || !time) return;
-
-    onBook({
-      vehicleId,
-      service,
-      time,
-    });
-
+    onBook({ vehicleId, service, time });
     setVehicleId("");
     setService("");
     setTime("");
   };
 
   return (
-    <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl mb-6">
-      <h2 className="text-lg font-semibold mb-4">Book Service</h2>
+    <Section title="Book Service" align="center">
+      <Card className="mb-6">
+        {/* Vehicle Select */}
+        <label className="block mb-2 text-sm font-body text-muted flex items-center gap-2">
+          <Car className="w-4 h-4 text-accent" /> Select Vehicle
+        </label>
+        <select
+          value={vehicleId}
+          onChange={(e) => setVehicleId(e.target.value)}
+          className="w-full mb-4 p-3 rounded-lg border border-border bg-card text-foreground focus:ring-2 focus:ring-[var(--color-accent)] outline-none"
+        >
+          <option value="">Select Vehicle</option>
+          {vehicles.map((v) => (
+            <option key={v.id} value={v.id}>
+              {v.make} {v.model}
+            </option>
+          ))}
+        </select>
 
-      {/* Vehicle Select */}
-      <select
-        value={vehicleId}
-        onChange={(e) => setVehicleId(e.target.value)}
-        className="w-full mb-3 p-2 bg-neutral-800 rounded"
-      >
-        <option value="">Select Vehicle</option>
-        {vehicles.map((v) => (
-          <option key={v.id} value={v.id}>
-            {v.make} {v.model}
-          </option>
-        ))}
-      </select>
+        {/* Service Input */}
+        <label className="block mb-2 text-sm font-body text-muted flex items-center gap-2">
+          <Wrench className="w-4 h-4 text-accent" /> Service Type
+        </label>
+        <Input
+          placeholder="e.g. Oil Change"
+          value={service}
+          onChange={(e) => setService(e.target.value)}
+          className="mb-4"
+        />
 
-      {/* Service Input */}
-      <input
-        placeholder="Service Type (e.g. Oil Change)"
-        value={service}
-        onChange={(e) => setService(e.target.value)}
-        className="w-full mb-3 p-2 bg-neutral-800 rounded"
-      />
+        {/* Time Slots */}
+        <p className="mb-2 text-sm text-muted font-body">Select Time Slot</p>
+        <TimeSlotGrid selected={time} onSelect={setTime} bookings={bookings} />
 
-      {/* Time Slots */}
-      <p className="mb-2 text-sm text-neutral-400">Select Time Slot</p>
-
-      <TimeSlotGrid selected={time} onSelect={setTime} bookings={bookings} />
-
-      <button
-        onClick={handleSubmit}
-        className="mt-4 bg-white text-black px-4 py-2 rounded w-full"
-      >
-        Confirm Booking
-      </button>
-    </div>
+        {/* Submit */}
+        <Button onClick={handleSubmit} className="mt-6 w-full">
+          Confirm Booking
+        </Button>
+      </Card>
+    </Section>
   );
 };

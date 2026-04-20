@@ -1,20 +1,28 @@
+import { Car } from "lucide-react";
+import Card from "../ui/Card";
+import Button from "../ui/Button";
+
 export const VehicleCard = ({ vehicle, onDelete }) => {
   return (
-    <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
-      <h3 className="text-lg font-semibold">
-        {vehicle.make} {vehicle.model}
-      </h3>
+    <Card>
+      <div className="flex items-center gap-2 mb-2">
+        <Car className="w-5 h-5 text-accent" />
+        <h3 className="text-lg font-display font-semibold">
+          {vehicle.make} {vehicle.model}
+        </h3>
+      </div>
 
-      <p className="text-sm text-neutral-400">
+      <p className="text-sm text-muted font-body">
         {vehicle.year} • {vehicle.plate}
       </p>
 
-      <button
+      <Button
+        variant="danger"
         onClick={() => onDelete(vehicle.id)}
-        className="mt-3 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+        className="mt-4 w-full"
       >
         Delete
-      </button>
-    </div>
+      </Button>
+    </Card>
   );
 };

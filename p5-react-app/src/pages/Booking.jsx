@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { BookingForm } from "../components/booking/BookingForm";
 import { getBookings, addBooking } from "../services/bookingServices";
-
 import { getVehicles } from "../services/vehicleService";
+import { Calendar } from "lucide-react";
+import Card from "../components/ui/Card";
+import Section from "../components/ui/Section";
 
 export const Booking = () => {
   const [bookings, setBookings] = useState([]);
@@ -19,8 +21,10 @@ export const Booking = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Book Service</h1>
+    <div className="min-h-screen bg-background text-foreground px-6 py-12">
+      <h1 className="text-3xl font-display font-bold mb-8 flex items-center gap-2">
+        <Calendar className="w-6 h-6 text-accent" /> Book Service
+      </h1>
 
       <BookingForm
         vehicles={vehicles}
@@ -29,21 +33,20 @@ export const Booking = () => {
       />
 
       {/* Bookings List */}
-      <div className="space-y-3">
+      <Section title="Your Bookings">
         {bookings.length === 0 ? (
-          <p className="text-neutral-400">No bookings yet.</p>
+          <p className="text-muted text-center">No bookings yet.</p>
         ) : (
-          bookings.map((b) => (
-            <div
-              key={b.id}
-              className="p-3 bg-neutral-900 border border-neutral-800 rounded"
-            >
-              <p className="font-semibold">{b.service}</p>
-              <p className="text-sm text-neutral-400">{b.time}</p>
-            </div>
-          ))
+          <div className="space-y-3">
+            {bookings.map((b) => (
+              <Card key={b.id}>
+                <p className="font-display font-semibold">{b.service}</p>
+                <p className="text-sm text-muted">{b.time}</p>
+              </Card>
+            ))}
+          </div>
         )}
-      </div>
+      </Section>
     </div>
   );
 };
