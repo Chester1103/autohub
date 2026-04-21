@@ -1,0 +1,24 @@
+:root {
+  /* =========================
+     BRAND COLORS
+  ========================== */
+  --color-foreground: #0a2540; /* Deep Navy - strong text */
+  --color-background: #fafaf8; /* Warm Off-White - app background */
+  --color-accent: #ff6b35; /* Amber Orange - primary CTA */
+  --color-muted: #6b7280; /* Steel Gray - secondary text */
+  --color-card: #ffffff; /* White - surfaces/cards */
+  --color-border: #e5e7eb; /* Light Gray - subtle borders */
+
+  /* =========================
+     STATUS COLORS
+  ========================== */
+  --color-success: #10b981; /* Emerald Green */
+  --color-error: #dc2626; /* Error Red */
+  --color-warning: #facc15; /* Warning Yellow */
+  --color-info: #3b82f6; /* Info Blue */
+
+  /* =========================
+     OPTIONAL NEUTRALS
+  ========================== */
+  --color-surface: #d1d5db; /* Cool Silver - neutral surfaces */
+}

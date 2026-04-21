@@ -1,0 +1,62 @@
+@import "./tailwind.css";
+@import "./fonts.css";
+@import "./theme.css";
+
+/* Global defaults */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.6;
+}
+
+/* Headings use Syne */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+
+/* Dashboard metrics, IDs, codes */
+.code-text,
+.stat-number {
+  font-family: var(--font-mono);
+}
+
+/* Utility classes */
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.bg-background {
+  background-color: var(--color-background);
+}
+
+.bg-card {
+  background-color: var(--color-card);
+}
+
+.border-border {
+  border-color: var(--color-border);
+}
+
+/* Buttons (baseline styles for accessibility) */
+button {
+  font-family: var(--font-body);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
